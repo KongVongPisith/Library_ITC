@@ -13,8 +13,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-
-# OS specific files
+# # OS specific files
 .DS_Store
 
 # Tests
