@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Thesis</title>
+</head>
+<body>
+    <h1>Edit Thesis</h1>
+    <form action="/thesis/<%= thesis.id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="student_name">Student Name:</label>
+            <input type="text" id="student_name" name="student_name" value="<%= thesis.student_name %>" required>
+        </div>
+        <div>
+            <label for="department_id">Department:</label>
+            <select id="department_id" name="department_id" required>
+                <% departments.forEach(department => { %>
+                    <option value="<%= department.id %>" <%= thesis.department_id == department.id ? 'selected' : '' %>><%= department.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="generation">Generation:</label>
+            <input type="text" id="generation" name="generation" value="<%= thesis.generation %>" required>
+        </div>
+        <div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" value="<%= thesis.subject %>" required>
+        </div>
+        <div>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" value="<%= thesis.topic %>" required>
+        </div>
+        <div>
+            <label for="published">Published:</label>
+            <input type="text" id="published" name="published" value="<%= thesis.published %>" required>
+        </div>
+        <div>
+            <label for="cover">Cover:</label>
+            <input type="file" id="cover" name="cover">
+        </div>
+        <div>
+            <label for="pdf">PDF:</label>
+            <input type="file" id="pdf" name="pdf">
+        </div>
+        <button type="submit">Update Thesis</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Books</h1>
+    <a href="/bookInput">Add New Book</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Published</th>
+                <th>Code</th>
+                <th>Genre</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>PDF</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% books.forEach(book => { %>
+                <tr>
+                    <td><%= book.title %></td>
+                    <td><%= book.isbn %></td>
+                    <td><%= book.published %></td>
+                    <td><%= book.code %></td>
+                    <td><%= book.genre %></td>
+                    <td><%= book.author %></td>
+                    <td><%= book.category ? book.category.name : 'No Category' %></td>
+                    <td><img src="<%= book.image %>" alt="Book Image" style="width: 100px;" /></td>
+                    <td><a href="<%= book.pdf %>" target="_blank">View PDF</a></td>
+                    <td>
+                        <a href="/book/<%= book.id%>/update">Edit</a>
+                        <form action="/book/<%= book.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
+

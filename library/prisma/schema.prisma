@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          Int     @id @default(autoincrement())
+  title       String?
+  isbn        String?
+  published   String?
+  code        String?
+  genre       String?
+  author      String?
+  image       String?
+  description String? @db.Text 
+  pdf String?
+  category Category? @relation(fields: [category_id], references: [id], onDelete: SetNull)
+  category_id Int?
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String?
+  cover String?
+  Book Book[]
+}
+
+model Thesis{
+  id Int @id @default(autoincrement())
+  student_name String?
+  department Department? @relation(fields: [department_id], references: [id], onDelete: SetNull)
+  department_id Int?
+  generation String?
+  subject String?
+  topic String?
+  published String?
+  cover String?
+  pdf String?
+}
+
+model Department{
+  id Int @id @default(autoincrement())
+  name String?
+  cover String?
+  thesis Thesis[]
+}
+
+model Journal{
+  id Int @id @default(autoincrement())
+  researcher String?
+  topic String?
+  cover String?
+  pdf String?
+  description String?
+  publishedBy String?
+  subject String?
+  fieldsResearch FieldsResearch? @relation(fields: [fieldsResearch_Id], references: [id], onDelete: SetNull)
+  fieldsResearch_Id Int?
+
+}
+
+model FieldsResearch{
+  id Int @id @default(autoincrement())
+  fieldName String?
+  cover String?
+  journal Journal[]
+}
+
+model Newpaper{
+  id Int @id @default(autoincrement())
+  pdf String?
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Update</title>
+</head>
+<body>
+    <h1>Upload Journal Information</h1>
+    <form action="/journal/<%= journal.id %>_method=PATCH" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+        </div>
+        <div>
+            <label for="researcher">Researcher Name:</label>
+            <input type="text" id="researcher" name="researcher" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        <div>
+            <label for="publishedBy">Published by:</label>
+            <input type="text" id="publishedBy" name="publishedBy" required>
+        </div>
+        <div>
+            <label for="fieldsResearch_Id">In research field:</label>
+            <select id="fieldsResearch_Id" name="fieldsResearch_Id" required>
+                <% fields.forEach(field => { %>
+                    <option value="<%= field.id %>" <%= journal.fieldsResearch_Id == field.id ? 'selected' : '' %>><%= field.fieldName %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="cover">Image:</label>
+            <input type="file" id="cover" name="cover" required>
+        </div>
+        <div>
+            <label for="pdf">PDF:</label>
+            <input type="file" id="pdf" name="pdf" required>
+        </div>
+        <button type="submit">Update Journal</button>
+    </form>
+</body>
+</html>

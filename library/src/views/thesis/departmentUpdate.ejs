@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Department</title>
+</head>
+<body>
+    <h1>Edit Department</h1>
+    <form action="/department/<%= department.id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="PATCH">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= department.name %>" required>
+        </div>
+        <div>
+            <label for="cover">Cover:</label>
+            <input type="file" id="cover" name="cover">
+        </div>
+        <button type="submit">Update Category</button>
+    </form>
+</body>
+</html>

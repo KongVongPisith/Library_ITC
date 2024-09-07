@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thesis List</h1>
+    <a href="/thesisInput">Add Thesis</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Generation</th>
+                <th>Subject</th>
+                <th>Topic</th>
+                <th>Published</th>
+                <th>Cover</th>
+                <th>PDF</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% theses.forEach(thesis => { %>
+                <tr>
+                    <td><%= thesis.id %></td>
+                    <td><%= thesis.student_name %></td>
+                    <td><%= thesis.department? thesis.department.name : 'Not Import' %></td>
+                    <td><%= thesis.generation %></td>
+                    <td><%= thesis.subject %></td>
+                    <td><%= thesis.topic %></td>
+                    <td><%= thesis.published %></td>
+                    <td><img src="<%= thesis.cover %>" alt="Cover Image" style="width: 100px;" /></td>
+                    <td><a href="<%= thesis.pdf %>" target="_blank">View PDF</a></td>
+                    <td>
+                        <a href="/thesis/<%= thesis.id %>/update">Edit</a>
+                        <form action="/thesis/<%= thesis.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
+

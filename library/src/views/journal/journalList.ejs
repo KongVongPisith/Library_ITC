@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Journal Upload</h1>
+    <a href="/journalInput">Add New Journal</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Topic</th>
+                <th>Researcher</th>
+                <th>Subject</th>
+                <th>Published by</th>
+                <th>Field Name</th>
+                <th>Image</th>
+                <th>PDF</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% journals.forEach(journal => { %>
+                <tr>
+                    <td><%= journal.topic %></td>
+                    <td><%= journal.researcher %></td>
+                    <td><%= journal.subject %></td></td>
+                    <td><%= journal.publishedBy %></td>
+                    <td><%= journal.fieldsResearch ? journal.fieldsResearch.fieldName : 'Null' %></td>
+                    <td><img src="<%= journal.cover %>" alt="Cover" style="width: 100px;" /></td>
+                    <td><a href="<%= journal.pdf %>" target="_blank">View PDF</a></td>
+                    <td>
+                        <a href="/journal/<%= journal.id%>/update">Edit</a>
+                        <form action="/journal/<%= journal.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

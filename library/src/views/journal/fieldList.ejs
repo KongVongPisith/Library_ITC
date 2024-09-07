@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Name</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Field Of Research</h1>
+    <a href="/fieldInput">Add New Field</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name of Field</th>
+                <th>Cover of Field</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% fields.forEach(field => { %>
+                <tr>
+                    <td><%= field.fieldName %></td>
+                    <td><img src="<%= field.cover %>" alt="Field" style="width: 100px;"></td>
+                    <td>
+                        <a href="/field/<%= field.id %>/update">Edit</a>
+                        <form action="/field/<%= field.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete Field</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload File</h1>
+    <form action="book" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required>
+        </div>
+        <div>
+            <label for="published">Published:</label>
+            <input type="text" id="published" name="published" required>
+        </div>
+        <div>
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" required>
+        </div>
+        <div>
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div>
+            <label for="category_id">Category:</label>
+            <select id="category_id" name="category_id" required>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
+        </div>
+        <div>
+            <label for="pdf">PDF:</label>
+            <input type="file" id="pdf" name="pdf" required>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
+

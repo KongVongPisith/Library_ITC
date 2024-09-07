@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Newsletter</h1>
+    <a href="/newsletter">Add More Department</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Newsletters</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% newsletters.forEach(newsletter => { %>
+                <tr>
+                    <td><%= newsletter.id %></td>
+                    <td><a href="<%= newsletter.pdf %>" target="_blank">View PDF</a></td>
+                    <td>
+                        <a href="/newsletter/<%= newsletter.id %>/update">Edit</a>
+                        <form action="/newsletter/<%= newsletter.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

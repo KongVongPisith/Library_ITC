@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Newsletter</title>
+</head>
+<body>
+    <h1>Edit Newsletter</h1>
+    <form action="/newsletter/<%= newsletter.id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="PATCH">
+        <div>
+            <label for="file">File: </label>
+            <input type="file" id="file" name="file">
+        </div>
+        <button type="submit">Update Newsletter</button>
+    </form>
+</body>
+</html>

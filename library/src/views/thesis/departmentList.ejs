@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of ITC</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Department</h1>
+    <a href="/department">Add More Department</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name Department</th>
+                <th>Cover Of Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% departments.forEach(department => { %>
+                <tr>
+                    <td><%= department.id %></td>
+                    <td><%= department.name %></td>
+                    <td><img src="<%= department.cover %>" alt="Department" style="width: 100px;"></td>
+                    <td>
+                        <a href="/department/<%= department.id %>/update">Edit</a>
+                        <form action="/department/<%= department.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload Thesis Information</h1>
+    <form action="thesis" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+        </div>
+        <div>
+            <label for="student_name">student_name:</label>
+            <input type="text" id="student_name" name="student_name" required>
+        </div>
+        <div>
+            <label for="published">Published:</label>
+            <input type="text" id="published" name="published" required>
+        </div>
+        <div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        <div>
+            <label for="generation">Generation:</label>
+            <input type="text" id="generation" name="generation" required>
+        </div>
+        <div>
+            <label for="department_id">Department:</label>
+            <select id="department_id" name="department_id" required>
+                <% departments.forEach(department => { %>
+                    <option value="<%= department.id %>"><%= department.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="cover">Image:</label>
+            <input type="file" id="cover" name="cover" required>
+        </div>
+        <div>
+            <label for="pdf">PDF:</label>
+            <input type="file" id="pdf" name="pdf" required>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

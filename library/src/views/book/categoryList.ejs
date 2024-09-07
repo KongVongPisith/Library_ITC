@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category of books</h1>
+    <a href="/bookCategory">Add New Category of book</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name of Category</th>
+                <th>Cover of Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(category => { %>
+                <tr>
+                    <td><%= category.id %></td>
+                    <td><%= category.name %></td>
+                    <td><img src="<%= category.cover %>" alt="Category" style="width: 100px;"></td>
+                    <td>
+                        <a href="/category/<%= category.id %>/update">Edit</a>
+                        <form action="/category/<%= category.id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
+
